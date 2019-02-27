@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="powermeterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="device">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="devID" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="12" Nullable="false" />
+          <Property Name="isActivated" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_dev" Type="int" Nullable="false" />
+          <Property Name="stamp" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="voltage" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="current_l1" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="current_l2" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="current_l3" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityContainer Name="powermeterModelStoreContainer">
+          <EntitySet Name="device" EntityType="Self.device" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="record" EntityType="Self.record" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="powermeterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="device">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="devID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="isActivated" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_dev" Type="Int32" Nullable="false" />
+          <Property Name="stamp" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="voltage" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="current_l1" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="current_l2" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="current_l3" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityContainer Name="powermeterEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="device" EntityType="Self.device" />
+          <EntitySet Name="record" EntityType="Self.record" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="powermeterModelStoreContainer" CdmEntityContainer="powermeterEntities2">
+          <EntitySetMapping Name="device">
+            <EntityTypeMapping TypeName="powermeterModel.device">
+              <MappingFragment StoreEntitySet="device">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="devID" ColumnName="devID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isActivated" ColumnName="isActivated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="record">
+            <EntityTypeMapping TypeName="powermeterModel.record">
+              <MappingFragment StoreEntitySet="record">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_dev" ColumnName="id_dev" />
+                <ScalarProperty Name="stamp" ColumnName="stamp" />
+                <ScalarProperty Name="voltage" ColumnName="voltage" />
+                <ScalarProperty Name="current_l1" ColumnName="current_l1" />
+                <ScalarProperty Name="current_l2" ColumnName="current_l2" />
+                <ScalarProperty Name="current_l3" ColumnName="current_l3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
