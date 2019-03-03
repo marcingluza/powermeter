@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="powermeterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="powermeterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="device">
           <Key>
             <PropertyRef Name="id" />
@@ -12,7 +12,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="devID" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="name" Type="nchar" MaxLength="12" Nullable="false" />
-          <Property Name="isActivated" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="record">
           <Key>
@@ -30,8 +29,7 @@
           <EntitySet Name="device" EntityType="Self.device" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="record" EntityType="Self.record" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="powermeterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -42,7 +40,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="devID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="isActivated" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="record">
           <Key>
@@ -72,7 +69,6 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="devID" ColumnName="devID" />
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="isActivated" ColumnName="isActivated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

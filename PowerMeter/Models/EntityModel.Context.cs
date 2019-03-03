@@ -13,9 +13,9 @@ namespace PowerMeter.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class powermeterEntities : DbContext
+    public partial class powermeterEntities2 : DbContext
     {
-        public powermeterEntities()
+        public powermeterEntities2()
             : base("name=powermeterEntities2")
         {
         }

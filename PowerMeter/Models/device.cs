@@ -11,25 +11,11 @@ namespace PowerMeter.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class device
     {
-        private int _id;
-        private string _devID;
-        private string _name;
-        private bool _isActivated;
-
-        public device(int id, string devID, string name, bool isActivated)
-        {
-            _id = id;
-            _devID = devID;
-            _name = name;
-            _isActivated = isActivated;
-        }
-
-        public int id { get => _id; set => _id = value; }
-        public string devID { get => _devID; set => _devID = value; }
-        public string name { get => _name; set => _name = value; }
-        public bool isActivated { get => _isActivated; set => _isActivated = value; }
+        public int id { get; set; }
+        public string devID { get; set; }
+        public string name { get; set; }
     }
 }
