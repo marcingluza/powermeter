@@ -228,6 +228,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MD5hash.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\device.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
@@ -253,6 +254,7 @@
     <Compile Include="Models\record.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MD5PasswordHasher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
