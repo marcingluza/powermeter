@@ -30,11 +30,8 @@ namespace PowerMeter
         void sendMail(IdentityMessage message)
         {
             #region formatter
-            string text = string.Format("Potwierdź swoje konto w aplikacji, ");
-            string html = message.Body;
-
-            html += HttpUtility.HtmlEncode(@"poprzez kliknięcie w poniższy link lub otwarcie go w przeglądarce: " + message.Body);
-            #endregion
+            string text = string.Format(message.Body);
+           #endregion
 
             
 
@@ -43,7 +40,6 @@ namespace PowerMeter
             msg.To.Add(new MailAddress(message.Destination));
             msg.Subject = "Witaj w PowerMeter!";
             msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
-            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
 
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
             System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailAdress"].ToString(), ConfigurationManager.AppSettings["EmailPassword"].ToString());
