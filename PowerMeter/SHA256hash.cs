@@ -7,11 +7,11 @@ using System.Web;
 
 namespace PowerMeter
 {
-    public class MD5hash
+    public class SHA256hash
     {
         public static string getHash(string password)
         {
-            MD5CryptoServiceProvider hash = new MD5CryptoServiceProvider();
+            SHA256 hash = new SHA256Managed();
             {
                 byte[] arr = System.Text.Encoding.UTF8.GetBytes(password);
                 arr = hash.ComputeHash(arr);

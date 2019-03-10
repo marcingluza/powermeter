@@ -6,11 +6,11 @@ using System.Web;
 
 namespace PowerMeter
 {
-    public class MD5PasswordHasher : IPasswordHasher
+    public class SHA256PasswordHasher : IPasswordHasher
     {
         public string HashPassword(string password)
         {
-            return MD5hash.getHash(password);
+            return SHA256hash.getHash(password);
         }
 
         public PasswordVerificationResult VerifyHashedPassword(string hashedPassword, string providedPassword)
