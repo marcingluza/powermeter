@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,8 +21,35 @@ namespace PowerMeter
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            return Task.Factory.StartNew(() =>
+            {
+                sendMail(message);
+            });
+        }
+
+        void sendMail(IdentityMessage message)
+        {
+            #region formatter
+            string text = string.Format("Potwierdź swoje konto w aplikacji, ");
+            string html = message.Body;
+
+            html += HttpUtility.HtmlEncode(@"poprzez kliknięcie w poniższy link lub otwarcie go w przeglądarce: " + message.Body);
+            #endregion
+
+            
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress(ConfigurationManager.AppSettings["EmailAdress"].ToString());
+            msg.To.Add(new MailAddress(message.Destination));
+            msg.Subject = "Witaj w PowerMeter!";
+            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
+            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailAdress"].ToString(), ConfigurationManager.AppSettings["EmailPassword"].ToString());
+            smtpClient.Credentials = credentials;
+            smtpClient.EnableSsl = true;
+            smtpClient.Send(msg);
         }
     }
 

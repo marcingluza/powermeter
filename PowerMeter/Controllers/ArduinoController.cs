@@ -12,7 +12,7 @@ namespace PowerMeter.Controllers
 {
     public class ArduinoController : Controller
     {
-       
+
         // 
         // GET: /Arduino  
         public ActionResult Index()
@@ -22,6 +22,7 @@ namespace PowerMeter.Controllers
 
         // 
         // GET: /Arduino/Add 
+        [HttpPost]
         public HttpStatusCode Add(string id, int voltage, float l1_current, float l2_current, float l3_current)
         {
             
