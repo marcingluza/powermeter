@@ -35,17 +35,17 @@ namespace PowerMeter
 
             
 
-            MailMessage msg = new MailMessage();
-            msg.From = new MailAddress(ConfigurationManager.AppSettings["EmailAdress"].ToString());
-            msg.To.Add(new MailAddress(message.Destination));
-            msg.Subject = "Witaj w PowerMeter!";
-            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
+            MailMessage MMessage = new MailMessage();
+            MMessage.From = new MailAddress(ConfigurationManager.AppSettings["EmailAdress"].ToString());
+            MMessage.To.Add(new MailAddress(message.Destination));
+            MMessage.Subject = "Witaj w PowerMeter!";
+            MMessage.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
 
-            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+            SmtpClient SMTPClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
             System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailAdress"].ToString(), ConfigurationManager.AppSettings["EmailPassword"].ToString());
-            smtpClient.Credentials = credentials;
-            smtpClient.EnableSsl = true;
-            smtpClient.Send(msg);
+            SMTPClient.Credentials = credentials;
+            SMTPClient.EnableSsl = true;
+            SMTPClient.Send(MMessage);
         }
     }
 

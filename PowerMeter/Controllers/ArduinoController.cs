@@ -21,11 +21,9 @@ namespace PowerMeter.Controllers
         }
 
         // 
-        // GET: /Arduino/Add 
-        [HttpPost]
+        // POST: /Arduino/Add 
         public HttpStatusCode Add(string id, int voltage, float l1_current, float l2_current, float l3_current)
-        {
-            
+        {        
             if (Startup.DeviceList.checkExist(id))
             {
                 record tempRecord = new record(0, Startup.DeviceList.getId(id), DateTime.Now, voltage, (decimal)l1_current, (decimal)l2_current, (decimal)l3_current);

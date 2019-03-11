@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace PowerMeter.Controllers
 {
@@ -13,14 +9,16 @@ namespace PowerMeter.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [Authorize(Roles = "admin")]
+        public ActionResult Panel()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Aktualne pomiary";
 
             return View();
         }
 
-        public ActionResult Contact()
+        
+        public ActionResult Charts()
         {
             ViewBag.Message = "Your contact page.";
 
