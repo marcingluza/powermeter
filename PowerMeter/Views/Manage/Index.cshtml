@@ -24,29 +24,53 @@
             }
             ]
         </dd>
+        <dt>Nazwa urządzenia:</dt>
+        <dd>
+            <input type="text" id="deviceName" placeholder="Nazwa urządzenia" />
+            <button id="UpdateDeviceName">Akceptuj</button>
+            <div id="UpdateDeviceNameResult"></div>
+        </dd>
         <dt>Cena za kWh:</dt>
         <dd>
-            <input type="text" id="kwhCost" placeholder="Cena kWh" value="0.55" />
+            <input type="text" id="kwhCost" placeholder="Cena kWh (zł)" value="0,55" />
             <button id="UpdateKwhCost">Akceptuj</button>
             <div id="KwhCostUpdateResult"></div>
         </dd>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#UpdateKwhCost").click(function (e) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Manage/SetKwhPrice",
-                        contentType: "application/json; charset=utf-8",
-                        data: '{"KwhCost":"' + $("#kwhCost").val() + '"}',
-                        dataType: "html",
-                        success: function (result, status, xhr) {
-                            $("#KwhCostUpdateResult").html(result);
-                        },
-                    });
-                    return false;
-                });
-            });
-        </script>
     </dl>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#UpdateDeviceName").click(function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Manage/SetDevice",
+                contentType: "application/json; charset=utf-8",
+                data: '{"DeviceName":"' + $("#deviceName").val() + '"}',
+                dataType: "html",
+                success: function (result, status, xhr) {
+                    $("#UpdateDeviceNameResult").html(result);
+                },
+            });
+            return false;
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#UpdateKwhCost").click(function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Manage/SetKwhPrice",
+                contentType: "application/json; charset=utf-8",
+                data: '{"KwhCost":"' + $("#kwhCost").val() + '"}',
+                dataType: "html",
+                success: function (result, status, xhr) {
+                    $("#KwhCostUpdateResult").html(result);
+                },
+            });
+            return false;
+        });
+    });
+</script>

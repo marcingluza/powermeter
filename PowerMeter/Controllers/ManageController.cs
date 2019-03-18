@@ -337,7 +337,39 @@ namespace PowerMeter.Controllers
         [HttpPost]
         public string SetKwhPrice(string KwhCost)
         {
-            return "Working!";
+            double KwhPriceValue = 0;
+            if (double.TryParse(KwhCost, out KwhPriceValue))
+            {
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    user.KwhPrice = KwhPriceValue;
+                    UserManager.Update(user);
+                    return "Zauktalizowano";
+                }
+                return "Błąd";
+            }
+            else
+                return "Niepoprawna wartość";
+        }
+
+        //
+        // POST: /Manage/SetDevice
+        [HttpPost]
+        public string SetDevice(string DeviceName)
+        {
+            if (Startup.DeviceList.Devices.Any(x => x.name == DeviceName))
+            {
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    user.DeviceName = DeviceName;
+                    UserManager.Update(user);
+                    return "Zauktalizowano";
+                }
+                return "Błąd";
+            }
+            return "Błędna nazwa urządzenia";
         }
 
         #region Helpers

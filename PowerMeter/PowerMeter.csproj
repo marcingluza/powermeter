@@ -229,6 +229,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903071334592_InitialCreate.cs" />
+    <Compile Include="Migrations\201903071334592_InitialCreate.Designer.cs">
+      <DependentUpon>201903071334592_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903181804539_KwhPrice.cs" />
+    <Compile Include="Migrations\201903181804539_KwhPrice.Designer.cs">
+      <DependentUpon>201903181804539_KwhPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903181830150_DeviceName.cs" />
+    <Compile Include="Migrations\201903181830150_DeviceName.Designer.cs">
+      <DependentUpon>201903181830150_DeviceName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\StatsViewModel.cs" />
     <Compile Include="SHA256hash.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -346,7 +359,17 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Arduino\Add.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903071334592_InitialCreate.resx">
+      <DependentUpon>201903071334592_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903181804539_KwhPrice.resx">
+      <DependentUpon>201903181804539_KwhPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903181830150_DeviceName.resx">
+      <DependentUpon>201903181830150_DeviceName.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

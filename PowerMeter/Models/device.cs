@@ -17,5 +17,6 @@ namespace PowerMeter.Models
         public int id { get; set; }
         public string devID { get; set; }
         public string name { get; set; }
+        public string userID { get; set; }
     }
 }
