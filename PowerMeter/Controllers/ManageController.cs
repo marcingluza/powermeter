@@ -32,9 +32,9 @@ namespace PowerMeter.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -332,8 +332,15 @@ namespace PowerMeter.Controllers
 
             base.Dispose(disposing);
         }
+        //
+        // POST: /Manage/SetKwhPrice
+        [HttpPost]
+        public string SetKwhPrice(string KwhCost)
+        {
+            return "Working!";
+        }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +391,6 @@ namespace PowerMeter.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
