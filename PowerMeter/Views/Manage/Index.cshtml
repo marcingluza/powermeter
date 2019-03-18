@@ -26,16 +26,17 @@
         </dd>
         <dt>Nazwa urządzenia:</dt>
         <dd>
-            <input type="text" id="deviceName" placeholder="Nazwa urządzenia" />
+            @Html.TextBoxFor(m => m.deviceName)
             <button id="UpdateDeviceName">Akceptuj</button>
             <div id="UpdateDeviceNameResult"></div>
         </dd>
         <dt>Cena za kWh:</dt>
         <dd>
-            <input type="text" id="kwhCost" placeholder="Cena kWh (zł)" value="0,55" />
+            @Html.TextBoxFor(m => m.kwhPrice)
             <button id="UpdateKwhCost">Akceptuj</button>
             <div id="KwhCostUpdateResult"></div>
         </dd>
+
     </dl>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -64,7 +65,7 @@
                 type: "POST",
                 url: "/Manage/SetKwhPrice",
                 contentType: "application/json; charset=utf-8",
-                data: '{"KwhCost":"' + $("#kwhCost").val() + '"}',
+                data: '{"kwhPrice":"' + $("#kwhPrice").val() + '"}',
                 dataType: "html",
                 success: function (result, status, xhr) {
                     $("#KwhCostUpdateResult").html(result);

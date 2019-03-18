@@ -10,6 +10,7 @@
 namespace PowerMeter.Models
 {
     using System;
+    using System.Collections.Generic;
     
     public partial class record
     {

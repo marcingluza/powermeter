@@ -65,12 +65,14 @@ namespace PowerMeter.Controllers
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
-            {
+            {                
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                kwhPrice = UserManager.FindById(User.Identity.GetUserId()).KwhPrice,
+                deviceName = UserManager.FindById(User.Identity.GetUserId()).DeviceName
             };
             return View(model);
         }
@@ -335,10 +337,10 @@ namespace PowerMeter.Controllers
         //
         // POST: /Manage/SetKwhPrice
         [HttpPost]
-        public string SetKwhPrice(string KwhCost)
+        public string SetKwhPrice(string kwhPrice)
         {
             double KwhPriceValue = 0;
-            if (double.TryParse(KwhCost, out KwhPriceValue))
+            if (double.TryParse(kwhPrice, out KwhPriceValue))
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
                 if (user != null)

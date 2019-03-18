@@ -12,7 +12,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="devID" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="name" Type="nchar" MaxLength="12" Nullable="false" />
-          <Property Name="userID" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="record">
           <Key>
@@ -41,7 +40,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="devID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="userID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="record">
           <Key>
@@ -68,7 +66,6 @@
           <EntitySetMapping Name="device">
             <EntityTypeMapping TypeName="powermeterModel.device">
               <MappingFragment StoreEntitySet="device">
-                <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="devID" ColumnName="devID" />
                 <ScalarProperty Name="name" ColumnName="name" />
