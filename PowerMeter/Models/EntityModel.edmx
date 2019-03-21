@@ -19,11 +19,12 @@
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_dev" Type="int" Nullable="false" />
-          <Property Name="stamp" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="stamp" Type="datetime2" Precision="7" />
           <Property Name="voltage" Type="decimal" Precision="5" Scale="2" />
           <Property Name="current_l1" Type="decimal" Precision="5" Scale="2" />
           <Property Name="current_l2" Type="decimal" Precision="5" Scale="2" />
           <Property Name="current_l3" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="wh" Type="int" />
         </EntityType>
         <EntityContainer Name="powermeterModelStoreContainer">
           <EntitySet Name="device" EntityType="Self.device" Schema="dbo" store:Type="Tables" />
@@ -47,11 +48,12 @@
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_dev" Type="Int32" Nullable="false" />
-          <Property Name="stamp" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="stamp" Type="DateTime" Precision="7" />
           <Property Name="voltage" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="current_l1" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="current_l2" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="current_l3" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="wh" Type="Int32" />
         </EntityType>
         <EntityContainer Name="powermeterEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="device" EntityType="Self.device" />
@@ -75,6 +77,7 @@
           <EntitySetMapping Name="record">
             <EntityTypeMapping TypeName="powermeterModel.record">
               <MappingFragment StoreEntitySet="record">
+                <ScalarProperty Name="wh" ColumnName="wh" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_dev" ColumnName="id_dev" />
                 <ScalarProperty Name="stamp" ColumnName="stamp" />

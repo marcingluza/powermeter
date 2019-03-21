@@ -11,20 +11,10 @@ namespace PowerMeter.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class record
     {
-        public record(long id, int id_dev, DateTime stamp, decimal? voltage, decimal? current_l1, decimal? current_l2, decimal? current_l3)
-        {
-            this.id = id;
-            this.id_dev = id_dev;
-            this.stamp = stamp;
-            this.voltage = voltage;
-            this.current_l1 = current_l1;
-            this.current_l2 = current_l2;
-            this.current_l3 = current_l3;
-        }
-
         public long id { get; set; }
         public int id_dev { get; set; }
         public System.DateTime stamp { get; set; }
@@ -32,5 +22,33 @@ namespace PowerMeter.Models
         public Nullable<decimal> current_l1 { get; set; }
         public Nullable<decimal> current_l2 { get; set; }
         public Nullable<decimal> current_l3 { get; set; }
+        public int wh { get; set; }
+
+        public record(int id_dev, DateTime stamp, decimal? voltage, decimal? current_l1, decimal? current_l2, decimal? current_l3)
+        {
+            this.id_dev = id_dev;
+            this.stamp = stamp;
+            this.voltage = voltage;
+            this.current_l1 = current_l1;
+            this.current_l2 = current_l2;
+            this.current_l3 = current_l3;
+
+            DateTime lastRecord = Startup.db.Database.SqlQuery<DateTime>(
+                @"SELECT TOP 1 stamp
+                FROM record WHERE id_dev = " + id_dev +
+                " ORDER BY stamp DESC"
+                ).Single();    //czas ostatniego odczytu
+
+            if (stamp < lastRecord.AddSeconds(20))
+            {
+                this.wh = 0;
+            }
+            else
+            {
+                int totalSeconds = (int)TimeSpan.FromTicks(stamp.Ticks - lastRecord.Ticks).TotalSeconds;
+                this.wh = Decimal.ToInt32(Convert.ToDecimal((current_l1 + current_l2 + current_l3) * voltage * totalSeconds / 3600));
+            }
+        }
     }
 }
+
