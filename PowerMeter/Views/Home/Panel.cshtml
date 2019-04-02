@@ -1,7 +1,47 @@
-﻿@{
+﻿@Styles.Render("~/Content/panel.css")
+@{
     ViewBag.Title = "Panel";
 }
 <h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-<textarea id="TextArea1" rows="2" cols="20"></textarea>
-<p>Use this area to provide additional information.</p>
+
+
+
+
+<div class="panelgrid">
+    <h3>Ostatnia aktualizacja: @Model.lastRecordTime:</h3>
+    <div class="panelrow">
+        <div class="panelbox"><div class="inner">L1:<br />@Model.currentPowerL1 kW</div></div>
+        <div class="panelbox"><div class="inner">L2:<br />@Model.currentPowerL2 kW</div></div>
+        <div class="panelbox"><div class="inner">L3:<br />@Model.currentPowerL3 kW</div></div>
+        <div class="panelbox"><div class="inner">Napięcie:<br />@Model.lastVoltage V</div></div>
+        <div class="panelbox"><div class="inner">Łącznie:<br />@Model.currentTotalPower kW</div></div>
+    </div>
+    <hr />
+    <h3>Ostatnia godzina:</h3>
+    <div class="panelrow">
+        <div class="panelbox"><div class="inner">Łącznie:<br />@Model.last1hConsumption kWh</div></div>
+        <div class="panelbox"><div class="inner">Śr. napięcie:<br />@Model.last1hVoltage V</div></div>
+        <div class="panelbox"><div class="inner">Koszt:<br />@Model.last1hCost zł</div></div>
+    </div>
+    <hr />
+    <h3>Ostatnia 24 godziny:</h3>
+    <div class="panelrow">
+        <div class="panelbox"><div class="inner">Łącznie:<br />@Model.last24hConsumption kWh</div></div>
+        <div class="panelbox"><div class="inner">Śr. napięcie:<br />@Model.last24hVoltage V</div></div>
+        <div class="panelbox"><div class="inner">Koszt:<br />@Model.last24hCost zł</div></div>
+    </div>
+    <hr />
+    <h3>Ostatnie 7 dni:</h3>
+    <div class="panelrow">
+        <div class="panelbox"><div class="inner">Łącznie:<br />@Model.last7dConsumption kWh</div></div>
+        <div class="panelbox"><div class="inner">Śr. napięcie:<br />@Model.last7dVoltage V</div></div>
+        <div class="panelbox"><div class="inner">Koszt:<br />@Model.last7dCost zł</div></div>
+    </div>
+    <hr />
+    <h3>Ostatnie 30 dni:</h3>
+    <div class="panelrow">
+        <div class="panelbox"><div class="inner">Łącznie:<br />@Model.last30dConsumption kWh</div></div>
+        <div class="panelbox"><div class="inner">Śr. napięcie:<br />@Model.last30dVoltage V</div></div>
+        <div class="panelbox"><div class="inner">Koszt:<br />@Model.last30dCost zł</div></div>
+    </div>
+</div>

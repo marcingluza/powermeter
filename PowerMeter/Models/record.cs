@@ -39,7 +39,7 @@ namespace PowerMeter.Models
                 " ORDER BY stamp DESC"
                 ).Single();    //czas ostatniego odczytu
 
-            if (stamp < lastRecord.AddSeconds(20))
+            if (stamp > lastRecord.AddSeconds(100))
             {
                 this.wh = 0;
             }

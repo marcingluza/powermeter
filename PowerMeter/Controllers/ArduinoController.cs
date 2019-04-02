@@ -1,12 +1,8 @@
 ﻿using PowerMeter.Models;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PowerMeter.Controllers
@@ -25,16 +21,18 @@ namespace PowerMeter.Controllers
         // POST: /Arduino/Add 
         public HttpStatusCode Add(string id, int voltage, float l1_current, float l2_current, float l3_current)
         {
-            StatsViewModel SVM = new StatsViewModel(Startup.DeviceList.Devices.Find(x => x.devID == id));
+           
 
 
             if (Startup.DeviceList.checkExist(id))
             {    
                 Thread thread = new Thread(delegate ()
                 {
+
                     record tempRecord = new record(Startup.DeviceList.getId(id), DateTime.Now, voltage, (decimal)l1_current, (decimal)l2_current, (decimal)l3_current);
                     Startup.db.record.Add(tempRecord);
                     Startup.db.SaveChanges();
+                 ////   StatsViewModel SVM = new StatsViewModel(Startup.DeviceList.Devices.Find(x => x.devID == id));
                 });
                 thread.Start();
   
