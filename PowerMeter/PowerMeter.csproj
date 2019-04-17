@@ -242,6 +242,7 @@
       <DependentUpon>201903181830150_DeviceName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ChartsModel.cs" />
     <Compile Include="Models\StatsViewModel.cs" />
     <Compile Include="SHA256hash.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -387,7 +388,10 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Chart\" />
+    <Folder Include="Views\Home\Charts\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

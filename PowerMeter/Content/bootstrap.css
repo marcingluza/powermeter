@@ -136,6 +136,9 @@ sub {
 }
 
 img {
+    max-width: 100%;
+    min-width: 300px;
+    height: auto;
     border: 0;
 }
 
@@ -267,7 +270,9 @@ table {
     }
 
     img {
-        max-width: 100% !important;
+        max-width: 100%;
+        min-width: 300px;
+        height: auto;
     }
 
     @page {
