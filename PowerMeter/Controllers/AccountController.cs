@@ -13,6 +13,11 @@ using PowerMeter.Models;
 
 namespace PowerMeter.Controllers
 {
+
+    //TODO: admin page with devices
+    //TODO: start page
+    //TODO: API
+
     [Authorize]
     public class AccountController : Controller
     {

@@ -46,85 +46,85 @@ namespace PowerMeter.Models
                 " ORDER BY stamp DESC"
                 ).Single();      //data + godzina ostatniego odczytu
 
-            Decimal lastVoltage = Startup.db.Database.SqlQuery<Decimal>(
+            Decimal lastVoltage = Startup.db.Database.SqlQuery<Decimal?>(
                 @"SELECT TOP 1 voltage 
                 FROM record WHERE id_dev = " + _device.id +
                 " ORDER BY stamp DESC"
-                ).Single();         //ostatni odzyt napiecia
+                ).Single() ?? 0;         //ostatni odzyt napiecia
 
-            Decimal lastCurrentL1 = Startup.db.Database.SqlQuery<Decimal>(
+            Decimal lastCurrentL1 = Startup.db.Database.SqlQuery<Decimal?>(
                 @"SELECT TOP 1 current_l1 
                 FROM record WHERE id_dev = " + _device.id +
                 " ORDER BY stamp DESC"
-                ).Single();    //ostatni odzyt amperazu L1
+                ).Single() ?? 0;    //ostatni odzyt amperazu L1
 
-            Decimal lastCurrentL2 = Startup.db.Database.SqlQuery<Decimal>(
+            Decimal lastCurrentL2 = Startup.db.Database.SqlQuery<Decimal?>(
                  @"SELECT TOP 1 current_l2
                 FROM record WHERE id_dev = " + _device.id +
                  " ORDER BY stamp DESC"
-                 ).Single();    //ostatni odzyt amperazu L2
+                 ).Single() ?? 0;    //ostatni odzyt amperazu L2
 
-            Decimal lastCurrentL3 = Startup.db.Database.SqlQuery<Decimal>(
+            Decimal lastCurrentL3 = Startup.db.Database.SqlQuery<Decimal?>(
                 @"SELECT TOP 1 current_l3
                 FROM record WHERE id_dev = " + _device.id +
                 " ORDER BY stamp DESC"
-                ).Single();    //ostatni odzyt amperazu L3
+                ).Single() ?? 0;    //ostatni odzyt amperazu L3
 
-            Decimal last1hAvgVoltage = Startup.db.Database.SqlQuery<Decimal>(
-    @"SELECT AVG(voltage) 
-                AS avgVoltage 
-                FROM record 
-                WHERE id_dev = " + _device.id +
-    "AND stamp BETWEEN DATEADD(hh, -1, getdate()) AND GETDATE()").Single(); //średnie napiecie 1h
-
-            Decimal last1hConsumption = Startup.db.Database.SqlQuery<int>(
-                @"SELECT SUM(wh) 
-                AS totalwh 
-                FROM record 
-                WHERE id_dev = " + _device.id +
-                "AND stamp BETWEEN DATEADD(hh, -1, getdate()) AND GETDATE()").Single();  //zuzycie prądu 1h
-
-            Decimal last24hAvgVoltage = Startup.db.Database.SqlQuery<Decimal>(
+            Decimal last1hAvgVoltage = Startup.db.Database.SqlQuery<Decimal?>(
                 @"SELECT AVG(voltage) 
                 AS avgVoltage 
                 FROM record 
                 WHERE id_dev = " + _device.id +
-                "AND stamp BETWEEN DATEADD(hh, -24, getdate()) AND GETDATE()").Single(); //średnie napiecie 24h
+                "AND stamp BETWEEN DATEADD(hh, -1, getdate()) AND GETDATE()").Single() ?? 0; //średnie napiecie 1h
 
-            Decimal last24hConsumption = Startup.db.Database.SqlQuery<int>(
+            Decimal last1hConsumption = Startup.db.Database.SqlQuery<int?>(
                 @"SELECT SUM(wh) 
                 AS totalwh 
                 FROM record 
                 WHERE id_dev = " + _device.id +
-                "AND stamp BETWEEN DATEADD(hh, -24, getdate()) AND GETDATE()").Single();  //zuzycie prądu 24h
+                "AND stamp BETWEEN DATEADD(hh, -1, getdate()) AND GETDATE()").Single() ?? 0;  //zuzycie prądu 1h
 
-            Decimal last7dAvgVoltage = Startup.db.Database.SqlQuery<Decimal>(
+            Decimal last24hAvgVoltage = Startup.db.Database.SqlQuery<Decimal?>(
                 @"SELECT AVG(voltage) 
                 AS avgVoltage 
                 FROM record 
                 WHERE id_dev = " + _device.id +
-                "AND stamp BETWEEN DATEADD(dd, -7, getdate()) AND GETDATE()").Single(); //średnie napiecie 7d
+                "AND stamp BETWEEN DATEADD(hh, -24, getdate()) AND GETDATE()").Single() ?? 0; //średnie napiecie 24h
 
-            Decimal last7dConsumption = Startup.db.Database.SqlQuery<int>(
+            Decimal last24hConsumption = Startup.db.Database.SqlQuery<int?>(
                 @"SELECT SUM(wh) 
                 AS totalwh 
                 FROM record 
                 WHERE id_dev = " + _device.id +
-                "AND stamp BETWEEN DATEADD(dd, -7, getdate()) AND GETDATE()").Single();  //zuzycie prądu 7d
+                "AND stamp BETWEEN DATEADD(hh, -24, getdate()) AND GETDATE()").Single() ?? 0;  //zuzycie prądu 24h
 
-            Decimal last30dAvgVoltage = Startup.db.Database.SqlQuery<Decimal>(
+            Decimal last7dAvgVoltage = Startup.db.Database.SqlQuery<Decimal?>(
+                @"SELECT AVG(voltage) 
+                AS avgVoltage 
+                FROM record 
+                WHERE id_dev = " + _device.id +
+                "AND stamp BETWEEN DATEADD(dd, -7, getdate()) AND GETDATE()").Single() ?? 0; //średnie napiecie 7d
+
+            Decimal last7dConsumption = Startup.db.Database.SqlQuery<int?>(
+                @"SELECT SUM(wh) 
+                AS totalwh 
+                FROM record 
+                WHERE id_dev = " + _device.id +
+                "AND stamp BETWEEN DATEADD(dd, -7, getdate()) AND GETDATE()").Single() ?? 0;  //zuzycie prądu 7d
+
+            Decimal last30dAvgVoltage = Startup.db.Database.SqlQuery<Decimal?>(
                @"SELECT AVG(voltage) 
                 AS avgVoltage 
                 FROM record 
                 WHERE id_dev = " + _device.id +
-                "AND stamp BETWEEN DATEADD(dd, -30, getdate()) AND GETDATE()").Single(); //średnie napiecie 30d
+                "AND stamp BETWEEN DATEADD(dd, -30, getdate()) AND GETDATE()").Single() ?? 0; //średnie napiecie 30d
 
-            Decimal last30dConsumption = Startup.db.Database.SqlQuery<int>(
+            Decimal last30dConsumption = Startup.db.Database.SqlQuery<int?>(
                 @"SELECT SUM(wh) 
                 AS totalwh 
                 FROM record 
                 WHERE id_dev = " + _device.id +
-                "AND stamp BETWEEN DATEADD(dd, -30, getdate()) AND GETDATE()").Single();  //zuzycie prądu 30d
+                "AND stamp BETWEEN DATEADD(dd, -30, getdate()) AND GETDATE()").Single() ?? 0;  //zuzycie prądu 30d
 
 
             this.lastRecordTime = lastRecordTime;

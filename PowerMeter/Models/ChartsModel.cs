@@ -80,7 +80,7 @@ namespace PowerMeter.Models
                 WHERE id_dev = " + _device.id +
               " AND stamp BETWEEN DATEADD(DAY," + (i + 1) * -1 + ", getdate()) AND DATEADD(DAY," + -i + ", getdate())").DefaultIfEmpty(0).Single() ?? 0;  //zuzycie prądu 6h
                 this.y1d.Add(tempConsumption1d/1000);
-                this.x1d.Add(lastRecordTime.AddHours(-i * 6).ToString("dd/MM"));
+                this.x1d.Add(lastRecordTime.AddDays(-i).ToString("dd/MM"));
 
             }
             x10m.Reverse();
